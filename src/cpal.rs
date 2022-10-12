@@ -21,6 +21,10 @@ impl AudioConfiguration for CpalConfiguration {
             let host = cpal::host_from_id(host_id).unwrap();
             let devices = host.devices().unwrap();
             for (_device_index, device) in devices.enumerate() {
+                if device.supported_output_configs().is_err() {
+                    println!("No output configs? {}", device.name().unwrap());
+                    continue;
+                }
                 list.push(format!("{}*{}", host_id.name(), device.name().unwrap()));
             }
         }
@@ -35,6 +39,10 @@ impl AudioConfiguration for CpalConfiguration {
             let host = cpal::host_from_id(host_id).unwrap();
             let devices = host.devices().unwrap();
             for (_device_index, device) in devices.enumerate() {
+                if device.supported_input_configs().is_err() {
+                    println!("No INput Configs? {}", device.name().unwrap());
+                    continue;
+                }
                 list.push(format!("{}*{}", host_id.name(), device.name().unwrap()));
             }
         }
