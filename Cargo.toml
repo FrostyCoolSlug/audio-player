@@ -1,0 +1,23 @@
+[package]
+name = "audio-player"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+# Under Linux, we'll use PulseAudio to output to the GoXLR
+[target.'cfg(target_os = "linux")'.dependencies]
+libpulse-binding = "2.5.0"
+libpulse-simple-binding = "2.5.0"
+
+## TODO: Remove!
+cpal = "0.14.0"
+rb = "0.4.1"
+
+
+# Under Other Operating Systems, we'll use CPAL
+[target.'cfg(not(target_os = "linux"))'.dependencies]
+cpal = "0.14.0"
+rb = "0.4.1"
