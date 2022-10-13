@@ -40,7 +40,7 @@ impl AudioConfiguration for CpalConfiguration {
             let devices = host.devices().unwrap();
             for (_device_index, device) in devices.enumerate() {
                 if device.supported_input_configs().is_err() {
-                    println!("No INput Configs? {}", device.name().unwrap());
+                    println!("No Input Configs? {}", device.name().unwrap());
                     continue;
                 }
                 list.push(format!("{}*{}", host_id.name(), device.name().unwrap()));

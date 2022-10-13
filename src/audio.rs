@@ -13,5 +13,5 @@ pub trait AudioConfiguration {
 }
 
 pub fn get_configuration() -> Box<dyn AudioConfiguration> {
-    Box::new(crate::cpal::get_configuration())
+    Box::new(crate::pulse::configuration::get_configuration())
 }
